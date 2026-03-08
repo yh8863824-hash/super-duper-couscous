@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Would You Rather? 🤯 The Ultimate Dilemma Generator</title>
+  <meta name="description" content="Play Would You Rather online! Hundreds of impossible choices. Share with friends, spark debates, and go viral. New questions every time!" />
+  <meta property="og:title" content="Would You Rather? 🤯 Impossible Choices" />
+  <meta property="og:description" content="Can you answer these impossible dilemmas? Play now and challenge your friends!" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========== TOP BANNER AD ========== -->
+  <div class="ad-slot ad-top" aria-label="Advertisement">
+    <div class="ad-label">Advertisement</div>
+    <!-- PASTE YOUR GOOGLE ADSENSE CODE HERE -->
+    <!-- Example:
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+    <div class="ad-placeholder">📢 Your Ad Here — 728×90 Leaderboard</div>
+  </div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🤯</span>
+        <span class="logo-text">WOULD<br>YOU RATHER?</span>
+      </div>
+      <p class="tagline">Impossible choices. Endless debates.</p>
+    </div>
+  </header>
+
+  <!-- ========== MAIN LAYOUT ========== -->
+  <div class="page-layout">
+
+    <!-- LEFT SIDEBAR AD -->
+    <aside class="ad-sidebar ad-left" aria-label="Advertisement">
+      <div class="ad-label">Ad</div>
+      <!-- PASTE ADSENSE 160×600 SKYSCRAPER AD HERE -->
+      <div class="ad-placeholder vertical">📢 160×600<br>Skyscraper Ad</div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+      <!-- SCORE BAR -->
+      <div class="score-bar">
+        <div class="score-item">
+          <span class="score-num" id="questionsAnswered">0</span>
+          <span class="score-label">Answered</span>
+        </div>
+        <div class="score-item">
+          <span class="score-num" id="currentStreak">0</span>
+          <span class="score-label">🔥 Streak</span>
+        </div>
+        <div class="score-item">
+          <span class="score-num" id="categoryLabel">All</span>
+          <span class="score-label">Category</span>
+        </div>
+      </div>
+
+      <!-- CATEGORY FILTER -->
+      <div class="category-bar">
+        <button class="cat-btn active" data-cat="all">🌍 All</button>
+        <button class="cat-btn" data-cat="funny">😂 Funny</button>
+        <button class="cat-btn" data-cat="gross">🤢 Gross</button>
+        <button class="cat-btn" data-cat="superpowers">⚡ Powers</button>
+        <button class="cat-btn" data-cat="money">💰 Money</button>
+        <button class="cat-btn" data-cat="food">🍕 Food</button>
+      </div>
+
+      <!-- QUESTION CARD -->
+      <div class="question-card" id="questionCard">
+        <div class="question-number" id="questionNum">Question #1</div>
+
+        <div class="versus-container">
+          <!-- OPTION A -->
+          <button class="option-btn option-a" id="optionA" onclick="vote('A')">
+            <div class="option-letter">A</div>
+            <div class="option-text" id="textA">Loading...</div>
+            <div class="vote-bar">
+              <div class="vote-fill fill-a" id="fillA" style="width:0%"></div>
+            </div>
+            <div class="vote-percent" id="percentA"></div>
+          </button>
+
+          <!-- VS BADGE -->
+          <div class="vs-badge">OR</div>
+
+          <!-- OPTION B -->
+          <button class="option-btn option-b" id="optionB" onclick="vote('B')">
+            <div class="option-letter">B</div>
+            <div class="option-text" id="textB">Loading...</div>
+            <div class="vote-bar">
+              <div class="vote-fill fill-b" id="fillB" style="width:0%"></div>
+            </div>
+            <div class="vote-percent" id="percentB"></div>
+          </button>
+        </div>
+
+        <!-- RESULT MESSAGE (shown after voting) -->
+        <div class="result-message" id="resultMessage" style="display:none"></div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="action-row">
+          <button class="btn-next" id="nextBtn" onclick="nextQuestion()" style="display:none">
+            Next Question ➜
+          </button>
+          <button class="btn-skip" onclick="skipQuestion()">Skip ⏭</button>
+          <button class="btn-share" onclick="shareQuestion()">Share 📤</button>
+        </div>
+      </div>
+
+      <!-- ========== MID-PAGE AD (between content) ========== -->
+      <div class="ad-slot ad-mid" aria-label="Advertisement">
+        <div class="ad-label">Advertisement</div>
+        <!-- PASTE ADSENSE 300×250 RECTANGLE AD HERE -->
+        <div class="ad-placeholder">📢 300×250 Rectangle Ad — Best Performing Size!</div>
+      </div>
+
+      <!-- LEADERBOARD / RESULTS SECTION -->
+      <section class="results-section">
+        <h2 class="section-title">📊 Today's Most Debated</h2>
+        <div class="results-grid" id="resultsGrid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- SHARE SECTION -->
+      <section class="share-section">
+        <h2>😱 Make Your Friends Choose!</h2>
+        <p>Challenge your friends with this impossible dilemma:</p>
+        <div class="share-buttons">
+          <button class="share-btn twitter" onclick="shareTwitter()">🐦 Share on X</button>
+          <button class="share-btn whatsapp" onclick="shareWhatsapp()">💬 WhatsApp</button>
+          <button class="share-btn copy" onclick="copyLink()">🔗 Copy Link</button>
+        </div>
+        <p class="share-note" id="copyNote" style="display:none">✅ Link copied to clipboard!</p>
+      </section>
+
+      <!-- ========== BOTTOM AD ========== -->
+      <div class="ad-slot ad-bottom" aria-label="Advertisement">
+        <div class="ad-label">Advertisement</div>
+        <!-- PASTE ADSENSE 728×90 OR 320×50 MOBILE AD HERE -->
+        <div class="ad-placeholder">📢 Bottom Banner Ad — 728×90 Desktop / 320×50 Mobile</div>
+      </div>
+
+    </main>
+
+    <!-- RIGHT SIDEBAR AD -->
+    <aside class="ad-sidebar ad-right" aria-label="Advertisement">
+      <div class="ad-label">Ad</div>
+      <!-- PASTE ADSENSE 300×600 HALF-PAGE AD HERE -->
+      <div class="ad-placeholder vertical">📢 300×600<br>Half Page Ad</div>
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>🤯 Would You Rather? | Made for endless debates | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
+    <p class="footer-note">New questions added weekly. Bookmark this page!</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
